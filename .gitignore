@@ -1,0 +1,36 @@
+# Local configuration / secrets
+.env
+.env.*
+!.env.example
+config/config.inc.php.bak
+
+# Runtime databases and generated state
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploaded/generated lab data
+hackable/uploads/*
+!hackable/uploads/.gitkeep
+
+# Logs and local runtime output
+*.log
+logs/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# PHP tooling
+.phpunit.result.cache
+/vendor/
+
+# Archives / temporary files
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.tmp
+*.swp

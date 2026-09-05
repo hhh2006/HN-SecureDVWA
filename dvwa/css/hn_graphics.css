@@ -1,0 +1,21 @@
+/* V4.0 visual graphics layer — presentation only */
+:root{--gx1:#67f3e3;--gx2:#6aa8ff;--gx3:#b58cff;--gx4:#ff75cc;--gx5:#ffc968}
+.hn-visual-panel{overflow:hidden!important}
+.hn-visual-panel::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,rgba(103,243,227,.045),transparent 35%,rgba(181,140,255,.035) 70%,transparent);opacity:.7}
+.hn-visual-panel::after{content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.045),transparent);background-size:220% 100%;animation:gxSweep 9s ease-in-out infinite;opacity:.35}
+@keyframes gxSweep{0%,58%{background-position:130% 0}82%,100%{background-position:-130% 0}}
+.hn-graph-fill{position:relative!important;overflow:hidden!important;background:linear-gradient(90deg,var(--gx1),var(--gx2),var(--gx3),var(--gx4))!important;background-size:240% 100%!important;animation:gxBar 5s linear infinite, gxBarIn .9s cubic-bezier(.16,1,.3,1) var(--gdelay) both!important;box-shadow:0 0 16px rgba(103,243,227,.25)!important}
+.hn-graph-fill::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);background-size:55% 100%;animation:gxBarShine 2.8s linear infinite}
+@keyframes gxBar{to{background-position:240% 0}}@keyframes gxBarIn{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1);transform-origin:left}}@keyframes gxBarShine{from{background-position:-70% 0}to{background-position:170% 0}}
+.hn-graph-orb{filter:drop-shadow(0 0 14px rgba(103,243,227,.13));will-change:transform}
+.sd .donut.hn-graph-orb::before{content:"";position:absolute;inset:-13px;border-radius:50%;border:1px dashed rgba(103,243,227,.16);animation:gxOrbit 16s linear infinite}
+.sd .ring.hn-graph-orb::before{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(181,140,255,.16);animation:gxOrbit 10s linear infinite reverse}
+@keyframes gxOrbit{to{transform:rotate(360deg)}}
+.hn-graph-svg{filter:drop-shadow(0 8px 22px rgba(0,0,0,.12))}
+.hn-chart-spark{opacity:.65}.hn-spark-dot{fill:var(--gx1);filter:drop-shadow(0 0 5px var(--gx1));animation:gxSpark 2.8s ease-in-out var(--spark-delay) infinite}
+@keyframes gxSpark{0%,100%{opacity:.12;transform:scale(.6)}50%{opacity:.85;transform:scale(1.5)}}
+.hn-visual-row{position:relative;transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s ease,background .3s ease}.hn-visual-row:hover{transform:translateX(4px)}
+.hn-graphic-status{height:34px;margin:-4px 0 13px;padding:7px 11px;display:flex;align-items:center;gap:7px;border:1px solid rgba(103,243,227,.10);border-radius:12px;background:linear-gradient(90deg,rgba(103,243,227,.035),rgba(181,140,255,.025),rgba(255,117,204,.025));box-shadow:inset 0 1px rgba(255,255,255,.04);color:#6d80a0;font:800 7px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:1.1px}
+.hn-graphic-status .hn-gs-line{width:24px;height:1px;background:linear-gradient(90deg,var(--gx1),var(--gx3));box-shadow:0 0 8px var(--gx1)}.hn-graphic-status b{color:#9feee5;font-size:7px}.hn-graphic-status>i{width:3px;height:3px;border-radius:50%;background:var(--gx1);box-shadow:0 0 7px var(--gx1);animation:gxPulse 1.4s ease-in-out infinite}.hn-graphic-status>i:nth-last-child(2){animation-delay:.2s}.hn-graphic-status>i:nth-last-child(3){animation-delay:.4s}.hn-graphic-status>i:nth-last-child(4){animation-delay:.6s}.hn-graphic-status>i:nth-last-child(5){animation-delay:.8s}
+@keyframes gxPulse{50%{opacity:.2;transform:scale(.5)}}
+@media(prefers-reduced-motion:reduce){.hn-visual-panel::after,.hn-graph-fill,.hn-graph-fill::after,.sd .donut.hn-graph-orb::before,.sd .ring.hn-graph-orb::before,.hn-spark-dot,.hn-graphic-status>i{animation:none!important}.hn-visual-row:hover{transform:none}}

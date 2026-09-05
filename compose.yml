@@ -1,0 +1,45 @@
+services:
+  dvwa:
+    build:
+      context: .
+    image: hn-securedvwa:local
+    environment:
+      DB_SERVER: db
+      DB_DATABASE: dvwa
+      DB_USER: dvwa
+      DB_PASSWORD: dvwa-local-only
+      DB_PORT: 3306
+      DEFAULT_SECURITY_LEVEL: impossible
+      DEFAULT_LOCALE: en
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - dvwa
+    ports:
+      - "127.0.0.1:4280:80"
+    restart: unless-stopped
+
+  db:
+    image: mariadb:10.11
+    environment:
+      MARIADB_ROOT_PASSWORD: dvwa-root-local-only
+      MARIADB_DATABASE: dvwa
+      MARIADB_USER: dvwa
+      MARIADB_PASSWORD: dvwa-local-only
+    volumes:
+      - dvwa:/var/lib/mysql
+    networks:
+      - dvwa
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+volumes:
+  dvwa:
+
+networks:
+  dvwa:

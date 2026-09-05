@@ -1,0 +1,39 @@
+name: SecureDVWA Security Regression
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  security-regression:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.1', '8.2', '8.3', '8.4']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, mysqli, pdo_mysql, sqlite3, pdo_sqlite
+          coverage: none
+
+      - name: PHP syntax audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' file; do
+            php -l "$file" >/dev/null
+          done < <(find . -type f -name '*.php' -print0)
+
+      - name: Security regression
+        run: php tests/security_regression.php
+
+      - name: Project structure
+        run: php tests/project_structure_check.php
+
+      - name: Final release check
+        run: php tests/final_release_check.php

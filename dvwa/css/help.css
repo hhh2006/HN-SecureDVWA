@@ -1,0 +1,3 @@
+/* Help console compatibility layer. Main visual system lives in cinematic.css. */
+html, body { min-height: 100%; margin: 0; background: transparent !important; }
+body.hud-document { overflow-x: hidden; }
