@@ -1,5 +1,10 @@
 <div align="center">
 
+<img src="./HN-Hani-Animated-Identity.gif" width="100%" alt="Hani Khaled Nasser Alnasry - HN Animated Identity">
+
+</div>
+<div align="center">
+
 # 🛡️ HN-SecureDVWA
 
 ### Professional Web Application Security Training Lab
